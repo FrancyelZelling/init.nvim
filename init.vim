@@ -17,6 +17,8 @@ Plug 'vim-airline/vim-airline'                          " airline status bar
 Plug 'ryanoasis/vim-devicons'                           " pretty icons everywhere
 Plug 'luochen1990/rainbow'                              " rainbow parenthesis
 Plug 'hzchirs/vim-material'                             " material color themes
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'arzg/vim-colors-xcode'
 Plug 'gregsexton/MatchTag'                              " highlight matching html tags
 
 "}}}
@@ -41,6 +43,12 @@ Plug 'dart-lang/dart-vim-plugin'
 Plug 'machakann/vim-sandwich'                           " make sandwiches
 Plug 'christoomey/vim-tmux-navigator'                   " seamless vim and tmux navigation
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'sheerun/vim-polyglot'
+Plug 'HerringtonDarkholme/yats.vim'                     " typescript highliting
+"Plug 'maxmellon/vim-jsx-pretty'
+"Plug 'leafgarland/typescript-vim'
+"Plug 'peitalin/vim-jsx-typescript'                      " JSX highlighting
+Plug 'preservim/nerdtree'                               " glorious tree-based file explorer
 call plug#end()
 
 "}}}
@@ -50,7 +58,7 @@ call plug#end()
 set termguicolors                                       " Opaque Background
 set mouse=a                                             " enable mouse scrolling
 set clipboard+=unnamedplus                              " use system clipboard by default
-set tabstop=4 softtabstop=4 shiftwidth=4 autoindent     " tab width
+set tabstop=2 softtabstop=2 shiftwidth=2 autoindent     " tab width
 set expandtab smarttab                                  " tab key actions
 set incsearch ignorecase smartcase hlsearch             " highlight text while searching
 set list listchars=trail:»,tab:»-                       " use tab to navigate in list mode
@@ -77,8 +85,8 @@ set showtabline=2                                       " always show tabline
 set grepprg=rg\ --vimgrep                               " use rg as default grepper
 
 " performance tweaks
-set nocursorline
-set nocursorcolumn
+"set nocursorline
+"set nocursorcolumn
 set scrolljump=5
 set lazyredraw
 set redrawtime=10000
@@ -95,8 +103,9 @@ set shortmess+=c
 set signcolumn=yes
 
 " Themeing
-let g:material_style = 'oceanic'
-colorscheme vim-material
+"let g:material_style = 'oceanic'
+syntax enable
+colorscheme dracula
 hi Pmenu guibg='#00010a' guifg=white                    " popup menu colors
 hi Comment gui=italic cterm=italic                      " italic comments
 hi Search guibg=#b16286 guifg=#ebdbb2 gui=NONE          " search string highlight color
@@ -106,9 +115,9 @@ hi CursorLineNr gui=bold                                " make relative number b
 hi SpellBad guifg=NONE gui=bold,undercurl               " misspelled words
 
 " colors for git (especially the gutter)
-hi DiffAdd  guibg=#0f111a guifg=#43a047
-hi DiffChange guibg=#0f111a guifg=#fdd835
-hi DiffRemoved guibg=#0f111a guifg=#e53935
+hi DiffAdd  guibg=#282a36 guifg=#43a047
+hi DiffChange guibg=#282a36 guifg=#fdd835
+hi DiffRemoved guibg=#282a36 guifg=#e53935
 
 " coc multi cursor highlight color
 hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
@@ -150,6 +159,9 @@ let g:airline_symbols.dirty= ''
 let g:coc_snippet_next = '<Tab>'
 let g:coc_snippet_prev = '<S-Tab>'
 
+" Prevent UltiSnips to use tab
+let g:UltiSnipsExpandTrigger = "<nop>"
+
 " list of the extensions to make sure are always installed
 let g:coc_global_extensions = [
             \'coc-yank',
@@ -158,19 +170,18 @@ let g:coc_global_extensions = [
             \'coc-actions',
             \'coc-css',
             \'coc-html',
+            \'coc-emmet',
             \'coc-tsserver',
             \'coc-yaml',
             \'coc-lists',
             \'coc-snippets',
             \'coc-python',
-            \'coc-clangd',
             \'coc-prettier',
             \'coc-xml',
             \'coc-syntax',
             \'coc-git',
             \'coc-marketplace',
             \'coc-highlight',
-            \'coc-flutter',
             \]
 
 " indentLine
@@ -341,7 +352,7 @@ endfunction
 " ======================== Custom Mappings ====================== "{{{
 
 "" the essentials
-let mapleader=","
+let mapleader=" "
 nnoremap ; :
 nmap \ <leader>q
 map <F6> :Startify <CR>
@@ -438,11 +449,6 @@ xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<
 nmap <leader>a :CocCommand actions.open<CR>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" flutter mappings
-nnoremap <F3> :CocCommand flutter.devices<CR>
-nnoremap <F4> :CocCommand flutter.emulators<CR>
-nnoremap <F5> :CocCommand flutter.run<CR>
-
 " fugitive mappings
 nmap <leader>gd :Gdiffsplit<CR>
 nmap <leader>gb :Gblame<CR>
@@ -451,5 +457,9 @@ nmap <leader>gb :Gblame<CR>
 nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+
+" nerdtree
+nmap <leader>x  :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "}}}
