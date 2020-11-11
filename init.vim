@@ -49,57 +49,6 @@ Plug 'HerringtonDarkholme/yats.vim'                     " typescript highliting
 "Plug 'leafgarland/typescript-vim'
 "Plug 'peitalin/vim-jsx-typescript'                      " JSX highlighting
 "Plug 'hail2u/vim-css3-syntax'
-" ============= Vim-Plug ============== "{{{
-
-" auto-install vim-plug
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
-endif
-
-call plug#begin(expand('~/.config/nvim/plugged'))
-
-"}}}
-
-" ================= looks and GUI stuff ================== "{{{
-
-Plug 'vim-airline/vim-airline'                          " airline status bar
-Plug 'ryanoasis/vim-devicons'                           " pretty icons everywhere
-Plug 'luochen1990/rainbow'                              " rainbow parenthesis
-Plug 'hzchirs/vim-material'                             " material color themes
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'arzg/vim-colors-xcode'
-Plug 'gregsexton/MatchTag'                              " highlight matching html tags
-
-"}}}
-
-" ================= Functionalities ================= "{{{
-
-Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP and more
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " fzf itself
-Plug 'junegunn/fzf.vim'                                 " fuzzy search integration
-Plug 'SirVer/ultisnips'                                 " snippets manager
-Plug 'honza/vim-snippets'                               " actual snippets
-Plug 'Yggdroot/indentLine'                              " show indentation lines
-Plug 'tpope/vim-liquid'                                 " liquid language support
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}  " better python
-Plug 'tpope/vim-commentary'                             " better commenting
-Plug 'mhinz/vim-startify'                               " cool start up screen
-Plug 'tpope/vim-fugitive'                               " git support
-Plug 'psliwka/vim-smoothie'                             " some very smooth ass scrolling
-Plug 'wellle/tmux-complete.vim'                         " complete words from a tmux panes
-Plug 'tpope/vim-eunuch'                                 " run common Unix commands inside Vim
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'machakann/vim-sandwich'                           " make sandwiches
-Plug 'christoomey/vim-tmux-navigator'                   " seamless vim and tmux navigation
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-Plug 'sheerun/vim-polyglot'
-Plug 'HerringtonDarkholme/yats.vim'                     " typescript highliting
-"Plug 'maxmellon/vim-jsx-pretty'
-"Plug 'leafgarland/typescript-vim'
-"Plug 'peitalin/vim-jsx-typescript'                      " JSX highlighting
-"Plug 'hail2u/vim-css3-syntax'
 "Plug 'cakebaker/scss-syntax.vim'
 Plug 'tpope/vim-haml'
 Plug 'preservim/nerdtree'                               " glorious tree-based file explorer
